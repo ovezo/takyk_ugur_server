@@ -1,0 +1,474 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Duralga API",
+        "version": "2.0"
+    },
+    "paths": {
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": " - Login user",
+                "operationId": "a64070871a5c37f1e1bb2f70728e79c9",
+                "parameters": [
+                    {
+                        "name": "X-Localization",
+                        "in": "header",
+                        "description": "Localization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "ru": {
+                                "summary": "Russian",
+                                "value": "ru"
+                            },
+                            "en": {
+                                "summary": "English",
+                                "value": "en"
+                            },
+                            "tm": {
+                                "summary": "Turkmen",
+                                "value": "tm"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "phone": "+99365555555",
+                                    "password": 12345678
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User or password incorrect",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": " - Register user",
+                "operationId": "3295afca46af88840c7efede16e3803e",
+                "parameters": [
+                    {
+                        "name": "X-Localization",
+                        "in": "header",
+                        "description": "Localization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "ru": {
+                                "summary": "Russian",
+                                "value": "ru"
+                            },
+                            "en": {
+                                "summary": "English",
+                                "value": "en"
+                            },
+                            "tm": {
+                                "summary": "Turkmen",
+                                "value": "tm"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Mahri",
+                                    "phone": "+99365555555",
+                                    "email": "ilmedovamahri@gmail.com",
+                                    "password": 12345678
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "phone": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/user": {
+            "get": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": " - Get user",
+                "operationId": "1aeb1b58af6680686217329ef0b35322",
+                "parameters": [
+                    {
+                        "name": "X-Localization",
+                        "in": "header",
+                        "description": "Localization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "ru": {
+                                "summary": "Russian",
+                                "value": "ru"
+                            },
+                            "en": {
+                                "summary": "English",
+                                "value": "en"
+                            },
+                            "tm": {
+                                "summary": "Turkmen",
+                                "value": "tm"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": " - Logout user",
+                "operationId": "b21563312acc56bf853492df11f5402c",
+                "parameters": [
+                    {
+                        "name": "X-Localization",
+                        "in": "header",
+                        "description": "Localization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "ru": {
+                                "summary": "Russian",
+                                "value": "ru"
+                            },
+                            "en": {
+                                "summary": "English",
+                                "value": "en"
+                            },
+                            "tm": {
+                                "summary": "Turkmen",
+                                "value": "tm"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/update-user": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": " - Update user",
+                "description": "Every field is required, except password. Password field is optional",
+                "operationId": "e33cd5455af617f343adad55296d17df",
+                "parameters": [
+                    {
+                        "name": "X-Localization",
+                        "in": "header",
+                        "description": "Localization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "ru": {
+                                "summary": "Russian",
+                                "value": "ru"
+                            },
+                            "en": {
+                                "summary": "English",
+                                "value": "en"
+                            },
+                            "tm": {
+                                "summary": "Turkmen",
+                                "value": "tm"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Mahri",
+                                    "phone": "+99365555555",
+                                    "password": "Hello001!"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/banners": {
+            "get": {
+                "tags": [
+                    "Banners"
+                ],
+                "summary": " - Get list of stops",
+                "operationId": "07ba3737018639c888ed2c2c8ab01a36",
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/stops": {
+            "get": {
+                "tags": [
+                    "Stops"
+                ],
+                "summary": " - Get list of stops",
+                "operationId": "9dc4f87ad9f54ae177a657be38841d73",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search query parameter",
+                        "example": "Awtokombinat"
+                    },
+                    {
+                        "name": "endpoints",
+                        "in": "query",
+                        "description": "returns only endpoints if true",
+                        "example": "true"
+                    },
+                    {
+                        "name": "X-Localization",
+                        "in": "header",
+                        "description": "Localization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "ru": {
+                                "summary": "Russian",
+                                "value": "ru"
+                            },
+                            "en": {
+                                "summary": "English",
+                                "value": "en"
+                            },
+                            "tm": {
+                                "summary": "Turkmen",
+                                "value": "tm"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
