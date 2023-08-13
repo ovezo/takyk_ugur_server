@@ -7,7 +7,7 @@
     <title>Import stops</title>
 </head>
 <body>
-<h1 style="text-align: center">Duralga V2</h1>
+<h1 style="text-align: center">Ugur</h1>
 
 {{--    <form action="/import-stops" method="POST" enctype="multipart/form-data">--}}
 {{--    @csrf--}}
